@@ -1,0 +1,28 @@
+Travel itinerary Planner - documentation
+
+Started with first a prompt with the gemini and asked on what basis it gave the answer to get insight about how a normal LLM is working.
+
+Browsed for datasets in kaggle - the static ones and the websites like makemytrip, gtholidays etc for dynamic data.
+
+A few websites were only accessible due to the blocked network access.
+
+Initially planned with google api for gemini llm and for travel details i tried using tavily and serp api. 
+The limit exceeded and couldn't handle that. 
+
+Then tried using GROQ for the LLM. Fine tuned my idea.
+Used huggingfaceembeddings for converting the txt to num.
+Iterated through all csv's, cleaned the data and stored into vector DB.
+Then used wikipidia api to get a few websites by using topics - so that we can get the dynamic data and stored in vectorDB. 
+used DuckDuckGoSearchResults - function from langchain community tools, to get the url - this will be showed in the result ( for accomodation, food and stay).
+
+used llama-3.1-8b-instant model to generate itinerary from the input by the user:
+source
+destination
+traverllers
+Budget
+days
+food Preference
+other Specifications
+even if any one of these inputs are not present the model will generate a response.
+
+Built a streamlit interface for the UI .

@@ -8,7 +8,7 @@ if root_dir not in sys.path:
 try:
     from scripts.agent import generate_itinerary
 except Exception as e:
-    st.error(f"THE REAL IMPORT ERROR: {e}")
+    st.error(f"IMPORT ERROR: {e}")
     st.stop()
 
 st.set_page_config(page_title="AI Travel Planner", page_icon="✈️", layout="wide")
