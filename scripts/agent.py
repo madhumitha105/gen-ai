@@ -14,8 +14,6 @@ llm = ChatGroq(
 )
 
 tools = [search_local_knowledge, web_search]
-
-# IGNORE ANY YELLOW SQUIGGLY LINES UNDER THIS. IT IS THE CORRECT FUNCTION.
 agent_executor = create_react_agent(llm, tools)
 
 def generate_itinerary(source, destination, budget, days, food_pref, specs, travelers):

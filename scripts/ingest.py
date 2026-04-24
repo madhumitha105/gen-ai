@@ -12,7 +12,7 @@ def ingest_wikipedia(topics):
     for topic in topics:
         print(f"Fetching API data for: {topic}")
         try:
-            # Fetch content directly via API, bypassing the website
+            #fetching content using api
             page = wikipedia.page(topic)
             clean_text = page.content
             url = page.url
@@ -37,7 +37,7 @@ def ingest_wikipedia(topics):
     return db
 
 if __name__ == "__main__":
-    # Just list the topics, the API handles the rest
+    #giving the topics so the api can get website
     topics = [
         "Tourism in India",
         "Tourism in Europe",

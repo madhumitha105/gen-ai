@@ -2,18 +2,17 @@ import streamlit as st
 import sys
 import os
 
-# 1. Force the root directory into Python's path
 root_dir = os.path.dirname(os.path.abspath(__file__))
 if root_dir not in sys.path:
     sys.path.insert(0, root_dir)
 try:
     from scripts.agent import generate_itinerary
 except Exception as e:
-    st.error(f"🚨 THE REAL IMPORT ERROR: {e}")
+    st.error(f"THE REAL IMPORT ERROR: {e}")
     st.stop()
 
 st.set_page_config(page_title="AI Travel Planner", page_icon="✈️", layout="wide")
-st.title("✈️ AI Travel Planner")
+st.title("AI Travel Planner")
 
 with st.form("travel_form"):
     st.subheader("Plan Your Next Trip")
@@ -36,11 +35,10 @@ with st.form("travel_form"):
 if submit_button:
     with st.spinner("Agent analyzing constraints and searching Knowledge Base..."):
         try:
-            # All 7 variables passed to backend
             result = generate_itinerary(source, destination, budget, days, food_pref, specs, travelers)
             
             st.success("Itinerary Generated Successfully!")
-            st.divider() # Adds a nice visual line
+            st.divider()
             st.markdown(result)
             
         except Exception as e:
