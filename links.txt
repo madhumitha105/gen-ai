@@ -4,6 +4,10 @@ https://www.numbeo.com/cost-of-living/
 https://www.timeanddate.com/
 https://restcountries.com/
 
+links for api
+https://rapidapi.com/emir12/api/kiwi-com-cheap-flights/playground/apiendpoint_2712d869-a313-45eb-8c86-49b36b2cdf34
+https://console.groq.com/keys
+
 
 22/04
 https://dumps.wikimedia.org/enwikivoyage/latest/
