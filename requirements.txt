@@ -1,18 +1,24 @@
-langchain
-langchain-groq
-langchain-huggingface
-langchain-community
-langchainhub
-
-chromadb
-sentence-transformers
-pypdf
-
-pandas
-openpyxl
-beautifulsoup4
-requests
-unstructured
-
+#UI & environment
 streamlit
 python-dotenv
+
+#frameworks
+langchain
+langchain-core
+langchain-community
+langgraph
+
+#model providers
+langchain-groq
+langchain-huggingface
+sentence-transformers
+
+#vector DB and data processing
+langchain-chroma
+chromadb
+pandas
+langchain-text-splitters
+
+#tools and APIs
+wikipedia
+duckduckgo-search
