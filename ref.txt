@@ -1,0 +1,51 @@
+import os
+from dotenv import load_dotenv
+from langchain_groq import ChatGroq
+from langchain.agents import create_agent
+from langchain_core.messages import SystemMessage, HumanMessage
+from scripts.vector_tools import search_local_knowledge, web_search
+
+load_dotenv()
+
+llm = ChatGroq(
+    model_name="llama-3.1-8b-instant", 
+    groq_api_key=os.getenv("GROQ_API_KEY"),
+    temperature=0
+)
+
+tools = [search_local_knowledge, web_search]
+agent_executor = create_agent(llm, tools)
+
+def generate_itinerary(source, destination, budget, days, food_pref, specs, travelers):
+    dest_str = destination if destination else "Recommend a highly-rated destination from the Knowledge Base"
+    
+    query = f"""
+    Source: {source}
+    Destination: {dest_str}
+    Traveler Profile: {travelers}
+    Duration: {days} days
+    Budget: {budget}
+    Food: {food_pref}
+    Specifications: {specs}
+    """
+    
+    system_prompt = f"""You are a 'Local-First' Travel Agent.
+    
+    SOURCE OF TRUTH:
+    1. Primary: Use 'search_local_knowledge' for ALL destinations, rankings, and historical facts. 
+    2. Secondary: Use 'duckduckgo_search' ONLY for perishable data (live currency exchange rates, current weather, or specific flight availability).
+    
+    LOGISTICS & DIETARY:
+    - You MUST plan for {travelers}. Adjust transport (e.g., private car vs bus) and pace accordingly.
+    - If user specifies {food_pref}, ensure every meal suggestion is strictly compliant. 
+    - Allocate the budget of {budget} across all travelers. 
+    
+    Format the output as a professional day-by-day itinerary."""
+
+    inputs = {"messages": [
+        SystemMessage(content=system_prompt),
+        HumanMessage(content=query)
+    ]}
+    
+    response = agent_executor.invoke(inputs)
+    return response["messages"][-1].content
