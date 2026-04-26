@@ -5,6 +5,7 @@ from langchain_groq import ChatGroq
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import SystemMessage, HumanMessage
 from backend.vector_tools import search_local_knowledge, web_search
+from backend.flight_data import get_flights
 from backend.memory import get_session
 
 load_dotenv()
@@ -15,7 +16,7 @@ llm = ChatGroq(
     temperature=0
 )
 
-tools = [search_local_knowledge, web_search]
+tools = [search_local_knowledge, web_search, get_flights]
 agent_executor = create_react_agent(llm, tools)
 
 
@@ -25,20 +26,6 @@ def clean_text(text):
     text = re.sub(r"^[\*\-]\s+", "", text, flags=re.MULTILINE)
     text = text.replace("*", "")
     return text
-
-
-def extract_places(text):
-    pattern = r"(?:Place\s*–\s*|Visit\s+|Explore\s+|Stay\s*–\s*|Food\s*–\s*)([A-Z][a-zA-Z0-9\s&\-\(\)]+)"
-    matches = re.findall(pattern, text)
-
-    cleaned = list(set([
-        m.strip()
-        for m in matches
-        if len(m.split()) <= 6
-    ]))
-
-    return cleaned
-
 
 
 def run_agent(user_input: str, session_id: str):
@@ -85,6 +72,17 @@ Example:
 ₹80,000 (~$950 / £750)
 
 If source and destination are have same currency value then it is fine to give only in one currency.
+
+FLIGHTS:
+
+- ALWAYS use get_flights tool when source and destination are different cities/countries
+- Show 2-3 flight options
+- Include airline, price, duration
+
+Format:
+
+Flights:
+- Airline | Price | Duration
 """
 
     session_messages.append(SystemMessage(content=system_prompt))

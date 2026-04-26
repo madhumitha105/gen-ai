@@ -2,7 +2,7 @@
 fastapi
 uvicorn
 
-#for env
+#env
 python-dotenv
 
 #frameworks
@@ -22,6 +22,7 @@ sentence-transformers
 langchain-chroma
 chromadb
 
+#data processing
 pandas
 
 #text processing
@@ -31,5 +32,8 @@ langchain-text-splitters
 wikipedia
 duckduckgo-search
 
-#UI & environment
+#API calls
+requests
+
+#UI
 streamlit
