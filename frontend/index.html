@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Travel Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Travel Itinerary Planner</h1>
+    <p class="subtitle">Your trip, clearly planned AI</p>
+
+    <h3>Plan Your Next Trip</h3>
+
+    <div class="form">
+        <input id="source" placeholder="Source (e.g Chennai)">
+        <input id="destination" placeholder="Destination (optional)">
+        <input id="travelers" placeholder="Travelers (e.g 4 people)">
+        <input id="budget" placeholder="Total Budget">
+        <input id="days" placeholder="Days (e.g 5)">
+        <input id="food" placeholder="Food preference (Jain/Vegan)">
+        <textarea id="specs" placeholder="Additional preferences"></textarea>
+
+        <button onclick="generatePlan()">Generate Itinerary</button>
+    </div>
+
+    <!-- OUTPUT -->
+    <div id="output"></div>
+
+    <hr>
+
+    <!-- CHAT SECTION -->
+    <div class="chat-section">
+        <h3>Discuss / Modify Plan</h3>
+
+        <div class="chat-box" id="chat-box"></div>
+
+        <div class="chat-input">
+            <input id="chat-input" placeholder="Ask to modify itinerary...">
+            <button onclick="sendChat()">Send</button>
+        </div>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

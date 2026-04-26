@@ -1,5 +1,8 @@
-#UI & environment
-streamlit
+#backend
+fastapi
+uvicorn
+
+#for env
 python-dotenv
 
 #frameworks
@@ -8,17 +11,25 @@ langchain-core
 langchain-community
 langgraph
 
-#model providers
+#llm
 langchain-groq
+
+#embeddings
 langchain-huggingface
 sentence-transformers
 
-#vector DB and data processing
+#vectorDB
 langchain-chroma
 chromadb
+
 pandas
+
+#text processing
 langchain-text-splitters
 
-#tools and APIs
+#tools
 wikipedia
 duckduckgo-search
+
+#UI & environment
+streamlit

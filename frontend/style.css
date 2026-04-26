@@ -1,0 +1,104 @@
+body {
+    background-color: #0b0f19;
+    color: white;
+    font-family: Arial;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* FORM */
+.form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form input,
+.form textarea {
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+.form textarea {
+    grid-column: span 2;
+}
+
+.form button {
+    background-color: #4fc3f7;
+    border: none;
+    cursor: pointer;
+}
+
+/* OUTPUT */
+#output {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #333;
+    line-height: 1.6;
+    white-space: normal;
+}
+
+#output a {
+    color: #4fc3f7;
+    text-decoration: none;
+}
+
+#output a:hover {
+    text-decoration: underline;
+}
+
+/* CHAT SECTION */
+.chat-section {
+    margin-top: 30px;
+}
+
+.chat-box {
+    border: 1px solid #333;
+    padding: 15px;
+    margin-top: 10px;
+}
+
+.user {
+    color: #ca3535;
+    margin-bottom: 10px;
+}
+
+.bot {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.chat-input {
+    display: flex;
+    margin-top: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 10px;
+}
+
+.chat-input button {
+    padding: 10px;
+    background: #4fc3f7;
+    border: none;
+    cursor: pointer;
+}
