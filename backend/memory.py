@@ -8,17 +8,3 @@ def get_session(session_id: str):
     if session_id not in session_store:
         session_store[session_id] = []
     return session_store[session_id]
-
-def clear_session(session_id: str):
-    """
-    Clears a specific session (optional use).
-    """
-    if session_id in session_store:
-        session_store[session_id] = []
-
-def clear_all_sessions():
-    """
-    Clears all sessions (optional use).
-    """
-    global session_store
-    session_store = {}
