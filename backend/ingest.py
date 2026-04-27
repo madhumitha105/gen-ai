@@ -42,7 +42,7 @@ if __name__ == "__main__":
     topics = [
         "Tourism in India",
         "Tourism in Europe",
-        "Tourism in Southeast Asia",
+        "ASEAN Tourism Forum 2026",
         "Tourism in North America",
         "Tourism in the Middle East"
     ]
