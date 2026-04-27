@@ -4,6 +4,7 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 
+#path to store the vector embedddings
 CHROMA_PATH = "./vector_db/travel_data"
 
 def ingest_wikipedia(topics):
@@ -46,4 +47,4 @@ if __name__ == "__main__":
         "Tourism in the Middle East"
     ]
     ingest_wikipedia(topics)
-    print("\n--- Knowledge Base expanded via API! ---")
+    print("\nKnowledge Base expanded via API")

@@ -10,16 +10,18 @@ from backend.memory import get_session
 
 load_dotenv()
 
+#choosing the LLM
 llm = ChatGroq(
     model_name="openai/gpt-oss-120b",
-    groq_api_key=os.getenv("GROQ_API_KEY"),
+    groq_api_key=os.getenv("RAPID_API_KEY"),
     temperature=0
 )
 
+#using local DB for planning, web search for links and get_flights for flight details
 tools = [search_local_knowledge, web_search, get_flights]
 agent_executor = create_react_agent(llm, tools)
 
-
+#cleaning the LLM's output
 def clean_text(text):
     text = re.sub(r"#{1,6}\s*", "", text)
     text = re.sub(r"\*\*(.*?)\*\*", r"\1", text)
@@ -27,7 +29,7 @@ def clean_text(text):
     text = text.replace("*", "")
     return text
 
-
+#running the agent using prompt
 def run_agent(user_input: str, session_id: str):
     session_messages = get_session(session_id)
 
@@ -40,8 +42,7 @@ RULES:
 
 2. ALWAYS return:
 Day 1:
-- Place
-- Place
+- Places to be visited
 - Food
 - Stay
 
@@ -55,12 +56,11 @@ Day 1:
 5. STYLE:
 - Clean bullets
 - No paragraphs
-- No explanations
 
 6. FOOD:
 - Respect user preference
 
-BUDGET (MANDATORY):
+7. BUDGET (MANDATORY):
 
 Budget:
 - Per Person: currency based on destination
@@ -76,6 +76,7 @@ If source and destination are have same currency value then it is fine to give o
 FLIGHTS:
 
 - ALWAYS use get_flights tool when source and destination are different cities/countries
+- Use the specific travel date, number of adults, and children provided in the query.
 - Show 2-3 flight options
 - Include airline, price, duration
 
@@ -97,16 +98,20 @@ Flights:
 
     return cleaned
 
-
-def generate_itinerary(source=None, destination=None, budget=None, days=None, food_pref=None, specs=None, travelers=None):
+#a function to generate itinerary based on the user input
+def generate_itinerary(source=None, destination=None, budget=None, days=None, food_pref=None, specs=None, adults=1, children=0, travel_date=None, currency="INR"):
+    #formatting the query to ensure the agent passes the right passenger counts and dates to the flight tool
     query = f"""
 Plan a trip with the following details:
 
 Source: {source}
 Destination: {destination}
-Travelers: {travelers}
+Travel Date: {travel_date}
+Adults: {adults}
+Children: {children}
 Duration: {days}
 Budget: {budget}
+Currency: {currency}
 Food Preference: {food_pref}
 Preferences: {specs}
 """
