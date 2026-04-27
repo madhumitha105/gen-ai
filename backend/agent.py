@@ -61,7 +61,6 @@ Your goal is to provide highly structured, real-time travel itineraries using li
 - **Visit**: [Clean Place Name] - [One-liner description] [Clickable Markdown Link]
 - **Food**: [Specific dish based on user preference]
 - **Stay**: [Recommended area or type of stay]
-- **citation**: cite the source in the KB, from which source it got that input
 
 ####4. Budget
 - must generate the budget in source location's currency and also mention the estimation in destination's currency. 
